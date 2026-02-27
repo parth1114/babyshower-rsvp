@@ -70,7 +70,8 @@
       color:var(--muted);
       font-size:15px;
       line-height:1.75;
-      max-width:640px;
+      max-width:660px;
+      white-space:pre-line;
     }
 
     .heroArt{
@@ -79,10 +80,20 @@
       display:flex;
       justify-content:flex-end;
       align-items:flex-start;
-      padding-top:8px;
-      opacity:.9;
+      padding-top:6px;
     }
 
+    /* Radha Krishna image styling */
+    .heroImg{
+      width:100%;
+      max-width:320px;
+      height:auto;
+      border-radius:22px;
+      opacity:.98;
+      box-shadow: 0 18px 35px rgba(0,0,0,.12);
+    }
+
+    /* Only waves decoration (no flute) */
     .headerDeco{margin-top:14px; opacity:.85;}
     .headerDeco svg{width:100%; height:auto; display:block;}
 
@@ -129,6 +140,16 @@
       display:flex; align-items:center; gap:10px;
     }
 
+    /* video block (optional) */
+    .videoWrap{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.10);
+      background:rgba(255,255,255,.70);
+      margin: 8px 0 14px;
+    }
+    video{width:100%; height:auto; display:block;}
+
     /* Form */
     .grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
     @media (max-width:820px){ .grid{grid-template-columns:1fr;} }
@@ -172,7 +193,7 @@
     .modal h2{ margin:0; font-family:"Baloo 2", cursive; font-size:26px; }
     .modal p{ margin:8px 0 0; color:var(--muted); line-height:1.6; }
 
-    /* Footer removed per request */
+    /* Footer removed */
     footer{display:none;}
   </style>
 </head>
@@ -188,7 +209,6 @@
       <header>
         <div class="topRow">
           <div class="titleBlock">
-            <!-- Top line removed per request -->
             <h1>Join Us</h1>
             <div class="names">for <strong>Parth</strong> &amp; <strong>Devanshi</strong></div>
 
@@ -198,74 +218,25 @@
               <div class="pill">📍 <strong>Gwalia</strong></div>
             </div>
 
-            <!-- Message replaced exactly as requested -->
             <div class="poem">
-              A tiny miracle is on the way,<br> 
-              filling our hearts more each day.<br>
-              As we step into this beautiful new role,<br>
-              Join us in celebrating the little soul,<br>
-              who will make our family whole.
+A tiny miracle is on the way, filling our hearts more each day.
+As we step into this beautiful new role,
+Join us in celebrating the little soul,
+who will make our family whole.
             </div>
           </div>
 
           <div class="heroArt">
-            <!-- Teddy + balloons: soft, minimal outline like screenshot -->
-            <svg width="360" height="240" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" aria-label="Teddy with balloons">
-              <g fill="none" stroke="#8b8f98" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <!-- balloons -->
-                <circle cx="306" cy="54" r="28" />
-                <circle cx="332" cy="64" r="22" />
-                <circle cx="318" cy="84" r="18" />
-                <path d="M306 82 C302 116 292 132 280 170" />
-                <path d="M332 86 C338 126 324 144 300 170" />
-
-                <!-- teddy head -->
-                <circle cx="234" cy="86" r="46" />
-                <!-- ears -->
-                <circle cx="204" cy="62" r="18" />
-                <circle cx="264" cy="62" r="18" />
-                <circle cx="204" cy="62" r="9" />
-                <circle cx="264" cy="62" r="9" />
-
-                <!-- face -->
-                <circle cx="220" cy="84" r="4" fill="#8b8f98" fill-opacity="0.35" stroke="none"/>
-                <circle cx="248" cy="84" r="4" fill="#8b8f98" fill-opacity="0.35" stroke="none"/>
-                <path d="M230 98 Q234 104 238 98" />
-                <ellipse cx="234" cy="112" rx="26" ry="20" />
-                <path d="M226 108 Q234 116 242 108" />
-
-                <!-- body -->
-                <ellipse cx="234" cy="176" rx="62" ry="44" />
-              </g>
-
-              <!-- little belly stripes (soft pastel like screenshot) -->
-              <g stroke-linecap="round">
-                <path d="M214 174 H254" stroke="#6aa6ff" stroke-opacity="0.65" stroke-width="6"/>
-                <path d="M220 184 H248" stroke="#ff7fb6" stroke-opacity="0.65" stroke-width="6"/>
-              </g>
-            </svg>
+            <!-- Uses your repo file exactly: assets/Radha-Krishna.jpg -->
+            <img class="heroImg" src="assets/Radha-Krishna.jpg" alt="Radha Krishna" />
           </div>
         </div>
 
-        <!-- Header decoration: waves + flute + arcs (closer to screenshot) -->
         <div class="headerDeco">
-          <svg viewBox="0 0 980 170" xmlns="http://www.w3.org/2000/svg" aria-label="Header decoration">
-            <!-- waves -->
+          <!-- waves only -->
+          <svg viewBox="0 0 980 170" xmlns="http://www.w3.org/2000/svg" aria-label="Waves decoration">
             <path d="M90 150 C240 70, 380 70, 520 150" fill="none" stroke="rgba(32,178,166,.35)" stroke-width="10" stroke-linecap="round"/>
             <path d="M560 150 C700 70, 840 70, 940 150" fill="none" stroke="rgba(32,178,166,.35)" stroke-width="10" stroke-linecap="round"/>
-
-            <!-- flute -->
-            <path d="M395 116 L615 116" stroke="rgba(245,195,79,.90)" stroke-width="10" stroke-linecap="round"/>
-            <circle cx="470" cy="116" r="8" fill="rgba(245,195,79,.90)"/>
-            <circle cx="525" cy="116" r="8" fill="rgba(245,195,79,.90)"/>
-            <circle cx="580" cy="116" r="8" fill="rgba(245,195,79,.90)"/>
-
-            <!-- pastel arcs + dots -->
-            <path d="M520 58 C585 35 650 55 668 98" fill="none" stroke="rgba(32,178,166,.40)" stroke-width="7" stroke-linecap="round"/>
-            <circle cx="520" cy="58" r="10" fill="rgba(32,178,166,.45)"/>
-
-            <path d="M470 96 C505 70 540 66 560 92" fill="none" stroke="rgba(255,111,174,.40)" stroke-width="7" stroke-linecap="round"/>
-            <circle cx="470" cy="96" r="9" fill="rgba(255,111,174,.40)"/>
           </svg>
         </div>
       </header>
@@ -292,6 +263,16 @@
               <a class="btn btnPrimary" href="#rsvp">RSVP Now ✨</a>
             </div>
           </div>
+        </div>
+
+        <!-- OPTIONAL VIDEO SECTION -->
+        <div class="sectionTitle">Invitation Video</div>
+        <p class="muted" style="margin-top:-6px;">(Optional) Watch the invite video below.</p>
+        <div class="videoWrap">
+          <video controls preload="metadata">
+            <source src="assets/Invite.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         <div class="sectionTitle" id="rsvp">RSVP</div>
@@ -364,7 +345,7 @@
     </form>
   </div>
 
-  <!-- Cute submit overlay -->
+  <!-- Submit overlay -->
   <div class="overlay" id="overlay">
     <div class="modal">
       <h2>Sending your RSVP…</h2>
