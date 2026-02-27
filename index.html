@@ -372,7 +372,7 @@ who will make our family whole..."
   <div class="overlay" id="overlay">
     <div class="modal">
       <h2>Sending your RSVP…</h2>
-      <p>Thank you! One moment — we’ll take you to the thank-you page 💛</p>
+      <p>Thank you! Please wait a moment! 💛</p>
     </div>
   </div>
 
@@ -412,35 +412,77 @@ who will make our family whole..."
       guestNamesWrap.style.display = "block";
     });
 
-    rsvpForm.addEventListener("submit", (e) => {
+    rsvpForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-
+    
       const nameVal = el("name").value.trim();
       const phoneVal = el("phone").value.trim();
       const attendingVal = attending.value;
       const countVal = count.value;
-
+    
       if (!nameVal || !phoneVal || !attendingVal) {
         return alert("Please fill required fields (Name + Phone + Attendance).");
       }
       if (!countVal) return alert("Please select total number attending.");
-
-      googleForm.action = GOOGLE_FORM_ACTION_URL;
-
-      el("gf_name").name = ENTRY.name;             el("gf_name").value = nameVal;
-      el("gf_phone").name = ENTRY.phone;           el("gf_phone").value = phoneVal;
-      el("gf_attending").name = ENTRY.attending;   el("gf_attending").value = attendingVal;
-      el("gf_count").name = ENTRY.count;           el("gf_count").value = countVal;
-
-      el("gf_guestNames").name = ENTRY.guestNames; el("gf_guestNames").value = el("guestNames").value.trim();
-      el("gf_diet").name = ENTRY.diet;             el("gf_diet").value = el("diet").value.trim();
-      el("gf_message").name = ENTRY.message;       el("gf_message").value = el("message").value.trim();
-
+    
+      // Show overlay
       overlay.style.display = "grid";
-      googleForm.submit();
+    
+      // Prepare values
+      const guestNamesVal = el("guestNames").value.trim();
+      const dietVal = el("diet").value.trim();
+      const messageVal = el("message").value.trim();
+    
+      // Try submitting using the hidden form (if it exists)
+      let submitted = false;
+      try {
+        if (googleForm) {
+          googleForm.action = GOOGLE_FORM_ACTION_URL;
+    
+          el("gf_name").name = ENTRY.name;             el("gf_name").value = nameVal;
+          el("gf_phone").name = ENTRY.phone;           el("gf_phone").value = phoneVal;
+          el("gf_attending").name = ENTRY.attending;   el("gf_attending").value = attendingVal;
+          el("gf_count").name = ENTRY.count;           el("gf_count").value = countVal;
+    
+          el("gf_guestNames").name = ENTRY.guestNames; el("gf_guestNames").value = guestNamesVal;
+          el("gf_diet").name = ENTRY.diet;             el("gf_diet").value = dietVal;
+          el("gf_message").name = ENTRY.message;       el("gf_message").value = messageVal;
+    
+          googleForm.submit();
+          submitted = true;
+        }
+      } catch (err) {
+        console.log("Hidden form submit failed:", err);
+      }
+    
+      // Fallback: submit via fetch (works even if hidden form is missing)
+      if (!submitted) {
+        try {
+          const body = new URLSearchParams();
+          body.append(ENTRY.name, nameVal);
+          body.append(ENTRY.phone, phoneVal);
+          body.append(ENTRY.attending, attendingVal);
+          body.append(ENTRY.count, countVal);
+          body.append(ENTRY.guestNames, guestNamesVal);
+          body.append(ENTRY.diet, dietVal);
+          body.append(ENTRY.message, messageVal);
+    
+          await fetch(GOOGLE_FORM_ACTION_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body
+          });
+        } catch (err) {
+          console.log("Fetch submit failed:", err);
+        }
+      }
 
-      setTimeout(() => { window.location.href = "./thanks.html"; }, 900);
-    });
+  // Always redirect to thank-you page
+  setTimeout(() => {
+    window.location.href = "./thanks.html";
+  }, 900);
+});
   </script>
 </body>
 </html>
