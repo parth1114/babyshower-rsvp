@@ -223,16 +223,14 @@
         </div>
 
         <div class="divider">
-          <!-- Radha-Krishna inspired flute + peacock feather line art (original) -->
+          <!-- SAME divider as your thanks.html (Radha-Krishna inspired flute + feather) -->
           <svg viewBox="0 0 980 120" xmlns="http://www.w3.org/2000/svg" aria-label="Flute divider">
             <path d="M40 94 C160 44, 240 44, 360 94" fill="none" stroke="rgba(32,178,166,.55)" stroke-width="3" stroke-linecap="round"/>
             <path d="M620 94 C740 44, 820 44, 940 94" fill="none" stroke="rgba(32,178,166,.55)" stroke-width="3" stroke-linecap="round"/>
-
             <path d="M410 64 L590 64" stroke="rgba(245,195,79,.9)" stroke-width="6" stroke-linecap="round"/>
             <circle cx="465" cy="64" r="5" fill="rgba(245,195,79,.9)"/>
             <circle cx="505" cy="64" r="5" fill="rgba(245,195,79,.9)"/>
             <circle cx="545" cy="64" r="5" fill="rgba(245,195,79,.9)"/>
-
             <path d="M520 30 C545 18 568 20 586 34 C596 42 600 54 592 64"
                   fill="none" stroke="rgba(32,178,166,.55)" stroke-width="3" stroke-linecap="round"/>
             <circle cx="517" cy="30" r="6" fill="rgba(32,178,166,.75)"/>
@@ -246,10 +244,10 @@
           <div class="miniCard">
             <p class="miniTitle">📍 Venue</p>
             <p class="bigLine">Gwalia</p>
-            <p class="muted">1960 Ellesmere Road, Unit 1<br/>Scarborough, Ontario</p>
+            <p class="muted">1960 Ellesmere Rd, Unit 1<br/>Scarborough, Ontario</p>
             <div class="btnRow">
               <a class="btn" target="_blank"
-                 href="https://www.google.com/maps/search/?api=1&query=Gwalia%201960%20Ellesmere%20Road%20Unit%201%20Scarborough%20Ontario">
+                 href="https://www.google.com/maps/search/?api=1&query=Gwalia%201960%20Ellesmere%20Rd%20Unit%201%20Scarborough%20Ontario">
                 Open in Maps
               </a>
             </div>
@@ -278,8 +276,8 @@
             </div>
 
             <div>
-              <label for="phone">Phone</label>
-              <input id="phone" placeholder="e.g., 647-000-0000" />
+              <label for="phone">Phone *</label>
+              <input id="phone" required placeholder="e.g., 647-000-0000" />
             </div>
 
             <div>
@@ -305,18 +303,21 @@
             </div>
 
             <div class="rowFull" id="guestNamesWrap">
-              <label for="guestNames">Additional guest names</label>
-              <textarea id="guestNames" placeholder="e.g., Rohan, Meera"></textarea>
+              <label for="guestNames">Names of attending guests (including you)</label>
+              <textarea id="guestNames" placeholder="e.g., Parth Patel, Devanshi Soni"></textarea>
+              <div class="note" style="margin-top:6px;">
+                (Optional but helpful) You can list everyone coming, separated by commas.
+              </div>
             </div>
 
             <div class="rowFull">
-              <label for="diet">Dietary restrictions/allergies</label>
-              <input id="diet" placeholder="e.g., vegetarian, nut allergy" />
+              <label for="diet">Dietary restrictions / allergies</label>
+              <input id="diet" placeholder="e.g., Vegetarian / No / Nut allergy" />
             </div>
 
             <div class="rowFull">
               <label for="message">Message for parents-to-be</label>
-              <textarea id="message" placeholder="Leave a sweet note 💛"></textarea>
+              <textarea id="message" placeholder="Leave a sweet note 💛 (optional)"></textarea>
             </div>
           </div>
 
@@ -347,16 +348,16 @@
   <div class="overlay" id="overlay">
     <div class="modal">
       <h2>Sending your RSVP… 🧸✨</h2>
-      <p>Thank you! One moment — we’ll take you to a cute thank-you page 💛</p>
+      <p>Thank you! One moment — we’ll take you to the thank-you page 💛</p>
     </div>
   </div>
 
   <script>
-    // Your Google Form "formResponse" endpoint
+    // Google Form "formResponse" endpoint
     const GOOGLE_FORM_ACTION_URL =
       "https://docs.google.com/forms/d/e/1FAIpQLSfBipc2I1VMFp9HxK71T1TNTzmvujcUzGBHnZmRG23oLdzfNA/formResponse";
 
-    // Entry IDs pulled from your prefilled link
+    // Entry IDs from your prefilled link
     const ENTRY = {
       name:       "entry.2138106078",
       phone:      "entry.1855057840",
@@ -378,11 +379,11 @@
 
     function syncUI(){
       const isNo = attending.value === "No";
-      // Optional: hide additional guest names when not attending
       guestNamesWrap.style.display = isNo ? "none" : "block";
       if (isNo) el("guestNames").value = "";
-      // Helpful default: if No, default count to 0
-      if (isNo && !count.value) count.value = "0";
+
+      // If No, auto-set count to 0 for convenience
+      if (isNo) count.value = "0";
     }
 
     attending.addEventListener("change", syncUI);
@@ -403,16 +404,18 @@
       const dietVal = el("diet").value.trim();
       const messageVal = el("message").value.trim();
 
-      if (!nameVal || !attendingVal) return alert("Please fill required fields (Name + Attendance).");
+      if (!nameVal || !phoneVal || !attendingVal) {
+        return alert("Please fill required fields (Name + Phone + Attendance).");
+      }
       if (!countVal) return alert("Please select total number attending.");
 
       // Wire hidden Google Form
       googleForm.action = GOOGLE_FORM_ACTION_URL;
 
-      el("gf_name").name = ENTRY.name;            el("gf_name").value = nameVal;
-      el("gf_phone").name = ENTRY.phone;          el("gf_phone").value = phoneVal;
-      el("gf_attending").name = ENTRY.attending;  el("gf_attending").value = attendingVal;
-      el("gf_count").name = ENTRY.count;          el("gf_count").value = countVal;
+      el("gf_name").name = ENTRY.name;             el("gf_name").value = nameVal;
+      el("gf_phone").name = ENTRY.phone;           el("gf_phone").value = phoneVal;
+      el("gf_attending").name = ENTRY.attending;   el("gf_attending").value = attendingVal;
+      el("gf_count").name = ENTRY.count;           el("gf_count").value = countVal;
 
       el("gf_guestNames").name = ENTRY.guestNames; el("gf_guestNames").value = guestNamesVal;
       el("gf_diet").name = ENTRY.diet;             el("gf_diet").value = dietVal;
@@ -421,7 +424,7 @@
       overlay.style.display = "grid";
       googleForm.submit();
 
-      // Redirect to your custom thank-you page
+      // Redirect to your existing thank-you page
       setTimeout(() => { window.location.href = "./thanks.html"; }, 900);
     });
   </script>
