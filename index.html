@@ -195,6 +195,20 @@
 
     /* Footer removed */
     footer{display:none;}
+        /* Force gradient buttons (prevents white-out) */
+    a.btn.btnPrimary,
+    .btn.btnPrimary{
+      background: linear-gradient(135deg, var(--pink), var(--blue)) !important;
+      color: #fff !important;
+      border: 0 !important;
+    }
+    
+    button.primary,
+    .primary{
+      background: linear-gradient(135deg, var(--pink), var(--blue)) !important;
+      color: #fff !important;
+      border: 0 !important;
+    }
   </style>
 </head>
 
