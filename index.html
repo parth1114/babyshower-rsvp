@@ -46,30 +46,44 @@
     }
 
     header{
-      padding:26px 22px 10px;
-      background: linear-gradient(135deg, rgba(255,111,174,.22), rgba(58,166,255,.16));
+      padding:26px 22px 8px;
+      background: linear-gradient(135deg, rgba(255,111,174,.20), rgba(58,166,255,.14));
       position:relative;
     }
 
-    .topRow{display:flex; gap:18px; align-items:center; justify-content:space-between; flex-wrap:wrap;}
+    .topRow{display:flex; gap:18px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;}
     .titleBlock{flex:1; min-width:280px;}
-    h1{margin:0; font-family:"Great Vibes", cursive; font-size:64px; line-height:1;}
-    .names{margin-top:10px; font-family:"Baloo 2", cursive; font-size:20px; opacity:.95;}
+    h1{margin:0; font-family:"Great Vibes", cursive; font-size:72px; line-height:1;}
+    .names{margin-top:10px; font-family:"Baloo 2", cursive; font-size:22px; opacity:.95;}
 
-    .pillRow{margin-top:16px; display:flex; flex-wrap:wrap; gap:10px;}
+    .pillRow{margin-top:18px; display:flex; flex-wrap:wrap; gap:12px;}
     .pill{
-      padding:10px 14px; border-radius:999px;
+      padding:12px 16px; border-radius:999px;
       background:rgba(255,255,255,.78);
       border:1px solid rgba(0,0,0,.06);
-      font-size:13.5px;
-      display:inline-flex; gap:10px; align-items:center;
+      font-size:14px;
+      display:inline-flex; gap:12px; align-items:center;
     }
 
-    .note{margin-top:12px; color:var(--muted); font-size:14px; line-height:1.55;}
+    .poem{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.75;
+      max-width:640px;
+    }
 
-    .heroArt{width:360px; max-width:100%; display:flex; justify-content:flex-end; align-items:center;}
+    .heroArt{
+      width:380px;
+      max-width:100%;
+      display:flex;
+      justify-content:flex-end;
+      align-items:flex-start;
+      padding-top:8px;
+      opacity:.9;
+    }
 
-    .headerDeco{margin-top:18px; opacity:.85;}
+    .headerDeco{margin-top:14px; opacity:.85;}
     .headerDeco svg{width:100%; height:auto; display:block;}
 
     .content{padding:18px 22px 26px;}
@@ -77,7 +91,8 @@
     .miniGrid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;}
     @media (max-width:820px){
       .miniGrid{grid-template-columns:1fr;}
-      h1{font-size:56px;}
+      h1{font-size:60px;}
+      .heroArt{justify-content:flex-start}
     }
     .miniCard{
       border:1px solid rgba(0,0,0,.08);
@@ -173,8 +188,7 @@
       <header>
         <div class="topRow">
           <div class="titleBlock">
-            <!-- TOP LINE REMOVED PER REQUEST -->
-
+            <!-- Top line removed per request -->
             <h1>Join Us</h1>
             <div class="names">for <strong>Parth</strong> &amp; <strong>Devanshi</strong></div>
 
@@ -184,69 +198,74 @@
               <div class="pill">📍 <strong>Gwalia</strong></div>
             </div>
 
-            <p class="note">
-              A tiny miracle is on the way — and your love & blessings mean the world to us 💛
-            </p>
+            <!-- Message replaced exactly as requested -->
+            <div class="poem">
+              A tiny miracle is on the way,<br> 
+              filling our hearts more each day.<br>
+              As we step into this beautiful new role,<br>
+              Join us in celebrating the little soul,<br>
+              who will make our family whole.
+            </div>
           </div>
 
           <div class="heroArt">
-            <!-- Better teddy graphic (closer to your screenshot) -->
-            <svg width="340" viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" aria-label="Teddy with balloons">
-              <defs>
-                <linearGradient id="bearGrad" x1="80" y1="40" x2="220" y2="210" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#F7D6EA"/>
-                  <stop offset="1" stop-color="#DCEEFF"/>
-                </linearGradient>
-              </defs>
+            <!-- Teddy + balloons: soft, minimal outline like screenshot -->
+            <svg width="360" height="240" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" aria-label="Teddy with balloons">
+              <g fill="none" stroke="#8b8f98" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <!-- balloons -->
+                <circle cx="306" cy="54" r="28" />
+                <circle cx="332" cy="64" r="22" />
+                <circle cx="318" cy="84" r="18" />
+                <path d="M306 82 C302 116 292 132 280 170" />
+                <path d="M332 86 C338 126 324 144 300 170" />
 
-              <!-- balloons -->
-              <g opacity="0.95">
-                <circle cx="290" cy="70" r="34" fill="rgba(255,255,255,.55)" stroke="rgba(0,0,0,.10)" />
-                <circle cx="318" cy="62" r="26" fill="rgba(255,255,255,.50)" stroke="rgba(0,0,0,.10)" />
-                <circle cx="310" cy="90" r="22" fill="rgba(255,255,255,.45)" stroke="rgba(0,0,0,.10)" />
-                <path d="M290 104 C286 138 270 156 258 190" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M318 88 C324 136 306 156 278 190" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="2.2" stroke-linecap="round"/>
+                <!-- teddy head -->
+                <circle cx="234" cy="86" r="46" />
+                <!-- ears -->
+                <circle cx="204" cy="62" r="18" />
+                <circle cx="264" cy="62" r="18" />
+                <circle cx="204" cy="62" r="9" />
+                <circle cx="264" cy="62" r="9" />
+
+                <!-- face -->
+                <circle cx="220" cy="84" r="4" fill="#8b8f98" fill-opacity="0.35" stroke="none"/>
+                <circle cx="248" cy="84" r="4" fill="#8b8f98" fill-opacity="0.35" stroke="none"/>
+                <path d="M230 98 Q234 104 238 98" />
+                <ellipse cx="234" cy="112" rx="26" ry="20" />
+                <path d="M226 108 Q234 116 242 108" />
+
+                <!-- body -->
+                <ellipse cx="234" cy="176" rx="62" ry="44" />
               </g>
 
-              <!-- teddy head -->
-              <circle cx="210" cy="104" r="52" fill="url(#bearGrad)" stroke="rgba(0,0,0,.12)" stroke-width="2"/>
-              <circle cx="175" cy="82" r="20" fill="url(#bearGrad)" stroke="rgba(0,0,0,.10)" stroke-width="2"/>
-              <circle cx="246" cy="82" r="20" fill="url(#bearGrad)" stroke="rgba(0,0,0,.10)" stroke-width="2"/>
-              <circle cx="175" cy="82" r="11" fill="rgba(255,255,255,.35)"/>
-              <circle cx="246" cy="82" r="11" fill="rgba(255,255,255,.35)"/>
-
-              <!-- face -->
-              <circle cx="195" cy="104" r="6.2" fill="rgba(0,0,0,.55)"/>
-              <circle cx="225" cy="104" r="6.2" fill="rgba(0,0,0,.55)"/>
-              <ellipse cx="210" cy="128" rx="30" ry="25" fill="rgba(255,255,255,.70)" stroke="rgba(0,0,0,.08)" />
-              <path d="M202 124 Q210 132 218 124" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="3.2" stroke-linecap="round"/>
-
-              <!-- teddy body -->
-              <ellipse cx="210" cy="200" rx="60" ry="44" fill="rgba(255,255,255,.55)" stroke="rgba(0,0,0,.10)" stroke-width="2"/>
-              <!-- little tummy stripes -->
-              <path d="M193 190 H227" stroke="rgba(58,166,255,.75)" stroke-width="6" stroke-linecap="round"/>
-              <path d="M198 198 H222" stroke="rgba(255,111,174,.75)" stroke-width="6" stroke-linecap="round"/>
+              <!-- little belly stripes (soft pastel like screenshot) -->
+              <g stroke-linecap="round">
+                <path d="M214 174 H254" stroke="#6aa6ff" stroke-opacity="0.65" stroke-width="6"/>
+                <path d="M220 184 H248" stroke="#ff7fb6" stroke-opacity="0.65" stroke-width="6"/>
+              </g>
             </svg>
           </div>
         </div>
 
-        <!-- decorative waves + flute (like your screenshot) -->
+        <!-- Header decoration: waves + flute + arcs (closer to screenshot) -->
         <div class="headerDeco">
-          <svg viewBox="0 0 980 140" xmlns="http://www.w3.org/2000/svg" aria-label="Header decoration">
-            <path d="M70 120 C210 60, 360 60, 500 120" fill="none" stroke="rgba(32,178,166,.45)" stroke-width="6" stroke-linecap="round"/>
-            <path d="M540 120 C680 60, 820 60, 940 120" fill="none" stroke="rgba(32,178,166,.45)" stroke-width="6" stroke-linecap="round"/>
+          <svg viewBox="0 0 980 170" xmlns="http://www.w3.org/2000/svg" aria-label="Header decoration">
+            <!-- waves -->
+            <path d="M90 150 C240 70, 380 70, 520 150" fill="none" stroke="rgba(32,178,166,.35)" stroke-width="10" stroke-linecap="round"/>
+            <path d="M560 150 C700 70, 840 70, 940 150" fill="none" stroke="rgba(32,178,166,.35)" stroke-width="10" stroke-linecap="round"/>
 
             <!-- flute -->
-            <path d="M420 92 L610 92" stroke="rgba(245,195,79,.95)" stroke-width="8" stroke-linecap="round"/>
-            <circle cx="480" cy="92" r="7" fill="rgba(245,195,79,.95)"/>
-            <circle cx="525" cy="92" r="7" fill="rgba(245,195,79,.95)"/>
-            <circle cx="570" cy="92" r="7" fill="rgba(245,195,79,.95)"/>
+            <path d="M395 116 L615 116" stroke="rgba(245,195,79,.90)" stroke-width="10" stroke-linecap="round"/>
+            <circle cx="470" cy="116" r="8" fill="rgba(245,195,79,.90)"/>
+            <circle cx="525" cy="116" r="8" fill="rgba(245,195,79,.90)"/>
+            <circle cx="580" cy="116" r="8" fill="rgba(245,195,79,.90)"/>
 
-            <!-- ribbon/feather hint -->
-            <path d="M530 40 C560 22 590 26 612 44 C626 56 632 72 620 86"
-                  fill="none" stroke="rgba(32,178,166,.45)" stroke-width="5" stroke-linecap="round"/>
-            <circle cx="525" cy="40" r="8" fill="rgba(32,178,166,.55)"/>
-            <path d="M505 50 C525 62 538 74 540 92" fill="none" stroke="rgba(255,111,174,.45)" stroke-width="5" stroke-linecap="round"/>
+            <!-- pastel arcs + dots -->
+            <path d="M520 58 C585 35 650 55 668 98" fill="none" stroke="rgba(32,178,166,.40)" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="520" cy="58" r="10" fill="rgba(32,178,166,.45)"/>
+
+            <path d="M470 96 C505 70 540 66 560 92" fill="none" stroke="rgba(255,111,174,.40)" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="470" cy="96" r="9" fill="rgba(255,111,174,.40)"/>
           </svg>
         </div>
       </header>
@@ -275,7 +294,7 @@
           </div>
         </div>
 
-        <div class="sectionTitle" id="rsvp">🧸 RSVP</div>
+        <div class="sectionTitle" id="rsvp">RSVP</div>
         <p class="muted" style="margin-top:-6px;">
           Please fill out the RSVP below — your response will be saved to our guest list spreadsheet.
         </p>
@@ -324,7 +343,7 @@
 
             <div class="rowFull">
               <label for="message">Message for parents-to-be</label>
-              <textarea id="message" placeholder="Leave a sweet note 💛 (optional)"></textarea>
+              <textarea id="message" placeholder="Leave a sweet note (optional)"></textarea>
             </div>
           </div>
 
@@ -332,13 +351,9 @@
             <button class="primary" id="submitBtn" type="submit">Send RSVP ✨</button>
             <button class="secondary" type="button" id="resetBtn">Clear</button>
           </div>
-
-          <!-- BOTTOM LINE REMOVED PER REQUEST -->
         </form>
       </div>
     </div>
-
-    <footer></footer>
 
     <!-- Hidden iframe + hidden Google submit form -->
     <iframe name="hidden_iframe" style="display:none;"></iframe>
@@ -352,7 +367,7 @@
   <!-- Cute submit overlay -->
   <div class="overlay" id="overlay">
     <div class="modal">
-      <h2>Sending your RSVP… 🧸✨</h2>
+      <h2>Sending your RSVP…</h2>
       <p>Thank you! One moment — we’ll take you to the thank-you page 💛</p>
     </div>
   </div>
